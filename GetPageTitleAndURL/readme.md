@@ -6,7 +6,7 @@
 
 ***DEMO:***
 
-![Demo](http://example.com)
+![Demo](https://github.com/wifeofvillon/WoVBookmarklets/blob/master/GetPageTitleAndURL/demo.gif)
 
 ## Feature
 
