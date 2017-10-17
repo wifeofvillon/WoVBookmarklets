@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>AddGoogleCalendarByTime</title>
+  </head>
+  <body>
+    <header>
+      <h1>AddGoogleCalendarByTime</h1>
+    </header>
+    <section>
+      <table>
+        <tr>
+          <th>Date.getTime()</th><td id="now"></td>
+        </tr>
+        <tr>
+          <th>text</th><td id="text"></td>
+        </tr>
+        <tr>
+          <th>time</th><td id="time"></td>
+        </tr>
+        <tr>
+          <th>after</th><td id="after"></td>
+        </tr>
+        <tr>
+          <th>date</th><td id="date"></td>
+        </tr>
+      </table>
+    </section>
+<script type="text/javascript">
+(function(){
+  let d = new Date();
+  console.info(d.getFullYear() + '/' + d.getMonth() + '/' + d.getDate() + '/' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds());
+  let now = d.getTime();
+  console.info(document.getElementById('now').innerText = now);
+  let text = prompt('Input your event title:');
+  if (text) {
+    console.info(document.getElementById('text').innerText = text);
+    let time = prompt('How long will you hold the event later (ex.hh):');
+    console.info(document.getElementById('time').innerText = time);
+    if (time.match(/[0-9]+/)) {
+      let after = now + time*1*60*60*1000;
+      console.info(document.getElementById('after').innerText = after);
+      let d2 = new Date(after);
+      let d2a = [d2.getFullYear(), d2.getMonth(), d2.getDate(), d2.getHours(), d2.getMinutes(), d2.getSeconds()];
+      console.log(d2a);
+      let date = d2a[0].toString(); // YYYY
+      date += d2a[1] < 9 ? '0' + (d2a[1] + 1).toString() : (d2a[1] + 1).toString();
+      date += d2a[2] < 10 ? '0' + d2a[2].toString() : d2a[2].toString();
+      date += 'T';
+      date += d2a[3] < 10 ? '0' + d2a[3].toString() : d2a[3].toString();
+      date += d2a[4] < 10 ? '0' + d2a[4].toString() : d2a[4].toString();
+      date += '00';
+      console.info(document.getElementById('date').innerText = date);
+      let url = 'https://www.google.com/calendar/event?action=TEMPLATE&text=' + text + '&dates=' + date + '/' + date;
+      window.open(url);
+    } else {
+      alert('Invalid value: Input time in hh.');
+    }
+  }
+})();
+</script>
+  </body>
+</html>
