@@ -1,5 +1,7 @@
 # TamaatsumeDaily
 
+***CAUTION: このソースは現在バグが確認されています***
+
 ## 概要
 
 [刀剣乱舞玉集め進捗表](http://deltarium.org/tokenranbu/tamaatsume/) を開いた状態で使うと、その日回収した玉の数を知らせるブックマークレットです。
