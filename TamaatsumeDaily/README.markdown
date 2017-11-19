@@ -1,6 +1,6 @@
 # TamaatsumeDaily
 
-***CAUTION: このソースは現在バグが確認されています***
+***INFO: バグを修正しました(Nov. 19, 2017)***
 
 ## 概要
 
@@ -22,15 +22,12 @@
 ## 使い方
 
 1. ブラウザに新しいブックマークを追加する
-2. 追加したブックマークのURL欄の冒頭に`javascript:`と記述する
-3. 続けて`TamaatsumeDaily.min.js`の内容をペーストする
-4. [刀剣乱舞玉集め進捗表](http://deltarium.org/tokenranbu/tamaatsume/) のページ上で追加したブックマークをクリックする
+2. 続けて`TamaatsumeDaily.min.js`の内容をペーストする
+3. [刀剣乱舞玉集め進捗表](http://deltarium.org/tokenranbu/tamaatsume/) のページ上で追加したブックマークをクリックする
 
 ![使い方(1)](https://raw.githubusercontent.com/wifeofvillon/WoVBookmarklets/master/TamaatsumeDaily/usage1.png)
 
-![使い方(2)](https://raw.githubusercontent.com/wifeofvillon/WoVBookmarklets/master/TamaatsumeDaily/usage2.png)
-
-![使い方(3)](https://raw.githubusercontent.com/wifeofvillon/WoVBookmarklets/master/TamaatsumeDaily/usage3.png)
+![使い方(2)](https://raw.githubusercontent.com/wifeofvillon/WoVBookmarklets/master/TamaatsumeDaily/usage3.png)
 
 ***Note:***
 
@@ -44,6 +41,11 @@
 // 数字部分をイベント開催年月に変更(YYYYMM)
 const a='token-hihonosato-201711'
 ```
+
+## 依存関係等
+
+- [刀剣乱舞玉集め進捗表](http://deltarium.org/tokenranbu/tamaatsume/)でのみ動作します
+- スクリプトのminifyには[JSCompress](https://jscompress.com/)を使用しています
 
 ## 作者
 
