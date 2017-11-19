@@ -12,52 +12,108 @@
       return decodeURIComponent(((document.cookie + ';').match(key + '=([^¥S;]*)')||[])[1]);
     }
 
+    static strToJSON(value) {
+      return (typeof value == 'string') ? JSON.parse(value) : {};
+    }
+
     static get tama() {
-      return JSON.parse(this.valByKey(TAMAATSUME_KEY)).tama;
+      return this.strToJSON(this.valByKey(TAMAATSUME_KEY)).tama;
     }
 
-    static get today() {
-      return JSON.parse(this.valByKey(DAILY_KEY)).tama;
+    static get time() {
+      return this.strToJSON(this.valByKey(DAILY_KEY)).time;
     }
 
-    static write(key, value, expires) {
-      document.cookie = key + '=' + value + '; expires=' + expires;
+    static get todayTama() {
+      return this.strToJSON(this.valByKey(DAILY_KEY)).tama;
+    }
+
+    static write(key, value) {
+      document.cookie = key + '=' + value;
+      console.info('TamaatsumeCokkie.write: ' + this.valByKey(key));
     }
 
     static delete(key) {
-      this.write(key, '', (new Date(2015, 0, 14)).toUTCString());
+      document.cookie = key + '=; max-age=0';
+    }
+  }
+
+  class TamaatsumeDate {
+    constructor(date) {
+      this.date = date;
+      this.dateHash = {
+        year:   this.date.getFullYear(),
+        month:  this.date.getMonth(),
+        date:   this.date.getDate(),
+        hour:   this.date.getHours()
+      };
+      this.time = date.getTime();
+    }
+
+    /**
+     * get system reseted time(5:00AM)
+     * @return {Number} Date.getTime
+     */
+    get reseted() {
+      let time = (new Date(this.dateHash.year, this.dateHash.month, this.dateHash.date, 5)).getTime();
+      return (5 <= this.dateHash.hour) ? time : time - ONE_DAY;
+    }
+
+    isNextDay(reseted) {
+      return (reseted + ONE_DAY <= this.time) ? true : false;
     }
   }
 
   try {
-    if (!(location.href).match(APP_URL) || !TamaatsumeCookie.valByKey(TAMAATSUME_KEY)) throw new Error('E000: You cannot use this script on this page.');
-
+    if (!(location.href).match(APP_URL) || !TamaatsumeCookie.valByKey(TAMAATSUME_KEY)) throw new Error('このスクリプトは「刀剣乱舞玉集め進捗表 ver 2.3」上でのみ動作します。');
   } catch (e) {
-    console.error(e.message);
-
+    alert(e.message);
   }
 
+  let cookieValue = TamaatsumeCookie.valByKey(DAILY_KEY);
 
-  if (!TamaatsumeCookie.valByKey(DAILY_KEY)) {
-    console.info('First run');
+  let nowDate = new TamaatsumeDate(new Date());
 
-    cookieData.tama = TamaatsumeCookie.tama;
-    cookieData.time = (new Date()).getTime();
+  if (!typeof cookieValue == 'string' || cookieValue.length == 0 || cookieValue == 'undefined') {
+    console.info('First Run');
+
+    cookieData = {
+      tama: TamaatsumeCookie.tama,
+      time: nowDate.reseted
+    };
     console.info(cookieData);
 
-    // get expire
-    let nowDate = new Date(cookieData.time);
-    let expireDate = {
-      year:   nowDate.getFullYear(),
-      month:  nowDate.getMonth() + 1,
-      date:   (5 <= nowDate.getHours() && nowDate.getHours() < 24) ? (new Date(cookieData.time + ONE_DAY)).getDate(): nowDate.getDate()
-    };
-    console.info(expireDate);
-
-    // write hacking cookie
-    TamaatsumeCookie.write(DAILY_KEY, encodeURIComponent(JSON.stringify(cookieData)), (new Date(expireDate.year, expireDate.month, expireDate.date, RESET_HOUR)).toUTCString());
+    TamaatsumeCookie.write(DAILY_KEY, encodeURIComponent(JSON.stringify(cookieData)));
     console.info(TamaatsumeCookie.valByKey(DAILY_KEY));
+
+  } else {
+    console.info('Second or Later Run');
+
+    cookieData = JSON.parse(cookieValue);
+
+    try {
+      if (typeof cookieData.tama != 'number' || typeof cookieData.time != 'number') throw new Error('当スクリプトのデータが破損しているためリセットします(もう一度お試しください)');
+    } catch (e) {
+      TamaatsumeCookie.delete(DAILY_KEY);
+      alert(e.message);
+    }
+
+    if (nowDate.isNextDay(cookieData.time)) {
+      console.info('Date Changed');
+
+      cookieData = {
+        tama: TamaatsumeCookie.tama,
+        time: nowDate.reseted
+      }
+      console.info(cookieData);
+
+      TamaatsumeCookie.write(DAILY_KEY, encodeURIComponent(JSON.stringify(cookieData)));
+      console.info(TamaatsumeCookie.valByKey(DAILY_KEY));
+    } else {
+      console.info('Same Date');
+    }
+
   }
 
-  alert('今日は' + (TamaatsumeCookie.tama - TamaatsumeCookie.today) + '個集めました');
+  alert('今日は' + (TamaatsumeCookie.tama - TamaatsumeCookie.todayTama) + '個集めました');
 }
