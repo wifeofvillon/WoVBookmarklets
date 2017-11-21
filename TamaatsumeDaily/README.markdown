@@ -1,6 +1,6 @@
 # TamaatsumeDaily
 
-***INFO: バグを修正しました(Nov. 19, 2017)***
+***INFO: Cookieの寿命を設定しました(Nov. 21, 2017)***
 
 ## 概要
 

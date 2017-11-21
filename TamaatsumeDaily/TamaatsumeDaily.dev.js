@@ -29,7 +29,7 @@
     }
 
     static write(key, value) {
-      document.cookie = key + '=' + value;
+      document.cookie = key + '=' + value + '; max-age=86400';
       console.info('TamaatsumeCokkie.write: ' + this.valByKey(key));
     }
 
