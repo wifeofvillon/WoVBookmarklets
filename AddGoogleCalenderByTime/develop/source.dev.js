@@ -15,7 +15,7 @@
       date += d2a[3] < 10 ? '0' + d2a[3].toString() : d2a[3].toString();
       date += d2a[4] < 10 ? '0' + d2a[4].toString() : d2a[4].toString();
       date += '00';
-      let url = 'https://www.google.com/calendar/event?action=TEMPLATE&text=' + text + '&dates=' + date + '/' + date;
+      let url = 'https://www.google.com/calendar/event?action=TEMPLATE&text=' + encodeURIComponent(text) + '&dates=' + date + '/' + date;
       window.open(url);
     } else {
       alert('Invalid value: Input time in hh:mm.');
