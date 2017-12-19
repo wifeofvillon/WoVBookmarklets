@@ -20,12 +20,16 @@ javascript:(function(){
     'a': {
       string: '<a target="_blank" src="url">title</a>',
       desc: '<a />%E3%82%BF%E3%82%B0%E3%81%A7%E3%81%AE%E5%87%BA%E5%8A%9B%E5%BD%A2%E5%BC%8F%E3%81%A7%E3%81%99%E3%80%82'
+    },
+    'sb': {
+      string: '[title url]',
+      desc: 'Scrapbox%E7%94%A8%E3%81%AE%E5%87%BA%E5%8A%9B%E5%BD%A2%E5%BC%8F%E3%81%A7%E3%81%99%E3%80%82'
     }
   };
   /**
    * add templateTitle - they'll be used to choice template
    */
-  const switchVal = ['ss', 'md', 'a'];
+  const switchVal = ['ss', 'md', 'a', 'sb'];
   // get page url and title
   var page = {
     url: location.href,
