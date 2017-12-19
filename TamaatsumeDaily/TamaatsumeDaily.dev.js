@@ -1,5 +1,5 @@
 {
-  const TAMAATSUME_KEY = 'token-hihonosato-201711';
+  const TAMAATSUME_KEY = 'token-rentaisen-201712';
   const DAILY_KEY = 'token-hihonosato-daily';
   const APP_URL = 'deltarium.org/tokenranbu/tamaatsume/';
   const RESET_HOUR = 5;

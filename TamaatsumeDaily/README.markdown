@@ -1,6 +1,6 @@
 # TamaatsumeDaily
 
-***INFO: Cookieの寿命を設定しました(Nov. 21, 2017)***
+***INFO: 連帯戦(日向正宗)に対応しました(Dec. 19, 2017)***
 
 ## 概要
 
@@ -39,7 +39,8 @@
 
 ```js
 // 数字部分をイベント開催年月に変更(YYYYMM)
-const a='token-hihonosato-201711'
+const a='token-hihonosato-201711'; // 秘宝の里の場合
+const a='token-rentaisen-201712'; // 連隊戦の場合
 ```
 
 ## 依存関係等
