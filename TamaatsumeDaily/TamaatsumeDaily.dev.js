@@ -1,6 +1,6 @@
 {
-  const TAMAATSUME_KEY = 'token-rentaisen-201712';
-  const DAILY_KEY = 'token-hihonosato-daily';
+  const TAMAATSUME_KEY = 'token-rentaisen-201805';
+  const DAILY_KEY = 'token-rentaisen-daily';
   const APP_URL = 'deltarium.org/tokenranbu/tamaatsume/';
   const RESET_HOUR = 5;
   const ONE_DAY = 86400000; // 24 * 60 * 60 *1000
