@@ -10,7 +10,7 @@
 
 ## Feature
 
-- Three types output in initial state : TSV, Markdown, <a />
+- Three types output in initial state : TSV, Markdown, `<a />`, `[{title} {url}]`
 - Easy to expand
 
 ## Usage
@@ -28,7 +28,7 @@ If you want to expand this bookmarklet:
 
 ## Author
 
-@wifeofvillon
+[@wifeofvillon](https://twitter.com/wifeofvillon)
 
 ## License
 
