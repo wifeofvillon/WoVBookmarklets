@@ -24,12 +24,16 @@
     'sb': {
       string: '[title url]',
       desc: 'Scrapbox%E7%94%A8%E3%81%AE%E5%87%BA%E5%8A%9B%E5%BD%A2%E5%BC%8F%E3%81%A7%E3%81%99%E3%80%82'
+    },
+    'ww-inner': {
+      string: '[[title]]',
+      desc: 'wikiwiki%2ejp%e3%81%ae%e3%82%b5%e3%82%a4%e3%83%88%e5%86%85%e3%83%aa%e3%83%b3%e3%82%af%e3%81%a7%e3%81%ae%e5%87%ba%e5%8a%9b%e5%bd%a2%e5%bc%8f%e3%81%a7%e3%81%99%e3%80%82'
     }
   };
   /**
    * add templateTitle - they'll be used to choice template
    */
-  const switchVal = ['ss', 'md', 'a', 'sb'];
+  const switchVal = ['ss', 'md', 'a', 'sb', 'ww-inner'];
   // get page url and title
   let page = {
     url: location.href,
@@ -39,6 +43,12 @@
   if (page.url.match('trello.com/c/')) {
     page.url = page.url.match(/https*\:\/\/trello\.com\/c\/[a-zA-Z0-9]+\//)[0];
     page.title = document.getElementsByClassName('js-card-detail-title-input')[0].value;
+  }
+  // case: wikiwiki.jp(internal)
+  if (page.url.match('wikiwiki.jp')) {
+    // page.url = page.url.match(/https*\:\/\/wikiwiki\.jp\/[a-zA-Z0-9-_]+\/((?!#).+)/)[1];
+    let wikiTitle = page.title.match(/(?<= - ).+/)[0];
+    page.title = page.title.replace(` - ${wikiTitle}`,'');
   }
   // create dialog message
   let message = '%E5%87%BA%E5%8A%9B%E5%BD%A2%E5%BC%8F%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82';
