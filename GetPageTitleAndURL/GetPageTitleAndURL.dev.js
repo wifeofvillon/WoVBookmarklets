@@ -50,6 +50,15 @@
     let wikiTitle = page.title.match(/(?<= - ).+/)[0];
     page.title = page.title.replace(` - ${wikiTitle}`,'');
   }
+  // case: Zeplin
+  if (page.url.match('app.zeplin.io/project/')) {
+    if (document.getElementsByClassName("projectName")) {
+      page.title = document.getElementsByClassName("projectName")[0].innerText;
+    }
+    if (document.getElementsByClassName("ellipsis grows")) {
+      page.url = 'https://' + document.getElementsByClassName("ellipsis grows")[1].innerText;
+    }
+  }
   // create dialog message
   let message = '%E5%87%BA%E5%8A%9B%E5%BD%A2%E5%BC%8F%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82';
   for (var i = 0; i < switchVal.length; i++) {
