@@ -65,9 +65,15 @@
   }
   // case: amazon.co.jp
   if (page.url.match('amazon.co.jp')) {
-    let amazonProductCode = location.href.match(/\/dp\/([a-zA-Z0-9]+)\//)[1];
-    // page.url = location.protocol+'//'+location.host+'/dp/'+amazonProductCode+'/';
-    page.url = `${location.protocol}//${location.host}/dp/${amazonProductCode}/`;
+    let amazonProductCode = "";
+    if (location.href.match(/\/dp\/([a-zA-Z0-9]+)\//)) {
+      amazonProductCode = location.href.match(/\/dp\/([a-zA-Z0-9]+)\//)[1];
+    } else if (location.href.match(/\/gp\/product\/([a-zA-Z0-9]+)\//)) {
+      amazonProductCode = location.href.match(/\/gp\/product\/([a-zA-Z0-9]+)\//)[1];
+    }
+    if (amazonProductCode !== "") {
+      page.url = `${location.protocol}//${location.host}/dp/${amazonProductCode}/`;
+    }
   }
   // create dialog message
   let message = '%E5%87%BA%E5%8A%9B%E5%BD%A2%E5%BC%8F%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82';
