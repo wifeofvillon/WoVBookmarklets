@@ -1,8 +1,8 @@
 # TamaatsumeDaily
 
-***INFO: 秘宝の里(2019秋・桑名江)に対応しました(Sep 30, 2019)***
-
 ## 概要
+
+**Note:** [更新履歴](https://github.com/wifeofvillon/WoVBookmarklets/commits/master/TamaatsumeDaily)
 
 [刀剣乱舞玉集め進捗表](http://deltarium.org/tokenranbu/tamaatsume/) を開いた状態で使うと、その日回収した玉の数を知らせるブックマークレットです。
 
