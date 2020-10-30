@@ -75,6 +75,10 @@
       page.url = `${location.protocol}//${location.host}/dp/${amazonProductCode}/`;
     }
   }
+  // case: JIRA
+  if (page.url.match('atlassian.net') && document.getElementsByClassName("sc-eMgOci").length > 0 ) {
+    page.title = document.getElementsByClassName("sc-eMgOci")[0].innerText;
+  }
   // create dialog message
   let message = '%E5%87%BA%E5%8A%9B%E5%BD%A2%E5%BC%8F%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%97%E3%81%A6%E3%81%8F%E3%81%A0%E3%81%95%E3%81%84%E3%80%82';
   for (var i = 0; i < switchVal.length; i++) {
